@@ -19,4 +19,5 @@ public class VetController {
         model.addAttribute("vets",vetServices.findAll());
         return "vets/index";
     }
+
 }
