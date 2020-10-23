@@ -12,7 +12,6 @@ import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
-
     private final OwnerService ownerService;
     private final VetServices vetServices;
     private final PetTypeService petTypeService;
@@ -28,8 +27,9 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        if(petTypeService.findAll().isEmpty())
+        if (petTypeService.findAll().isEmpty()) {
             LoadData();
+        }
 
     }
 
@@ -110,7 +110,7 @@ public class DataLoader implements CommandLineRunner {
 
         //Saving Specialties
         Specialty savedRadiology = specialtyServices.save(radiology);
-        Specialty savedSurgery= specialtyServices.save(surgery);
+        Specialty savedSurgery = specialtyServices.save(surgery);
         Specialty savedDentistry = specialtyServices.save(dentistry);
 
         System.out.println("Saved Specialties");
