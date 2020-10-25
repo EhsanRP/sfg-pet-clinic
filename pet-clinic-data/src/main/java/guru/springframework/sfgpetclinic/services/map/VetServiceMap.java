@@ -2,19 +2,19 @@ package guru.springframework.sfgpetclinic.services.map;
 
 import guru.springframework.sfgpetclinic.model.Specialty;
 import guru.springframework.sfgpetclinic.model.Vet;
-import guru.springframework.sfgpetclinic.services.SpecialtyServices;
-import guru.springframework.sfgpetclinic.services.VetServices;
+import guru.springframework.sfgpetclinic.services.SpecialtyService;
+import guru.springframework.sfgpetclinic.services.VetService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetServices {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
-    private final SpecialtyServices specialtyServices;
+    private final SpecialtyService specialtyService;
 
-    public VetServiceMap(SpecialtyServices specialtyServices) {
-        this.specialtyServices = specialtyServices;
+    public VetServiceMap(SpecialtyService specialtyService) {
+        this.specialtyService = specialtyService;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
             vet.getSpecialties().forEach(
                     specialty -> {
                         if (specialty.getId() == null) {
-                            Specialty savedSpecialty = specialtyServices.save(specialty);
+                            Specialty savedSpecialty = specialtyService.save(specialty);
                             specialty.setId(savedSpecialty.getId());
                         }
                     });

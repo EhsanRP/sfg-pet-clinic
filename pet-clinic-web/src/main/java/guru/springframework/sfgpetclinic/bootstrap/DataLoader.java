@@ -3,8 +3,8 @@ package guru.springframework.sfgpetclinic.bootstrap;
 import guru.springframework.sfgpetclinic.model.*;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
-import guru.springframework.sfgpetclinic.services.SpecialtyServices;
-import guru.springframework.sfgpetclinic.services.VetServices;
+import guru.springframework.sfgpetclinic.services.SpecialtyService;
+import guru.springframework.sfgpetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,15 +13,15 @@ import java.time.LocalDate;
 @Component
 public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
-    private final VetServices vetServices;
+    private final VetService vetService;
     private final PetTypeService petTypeService;
-    private final SpecialtyServices specialtyServices;
+    private final SpecialtyService specialtyService;
 
-    public DataLoader(OwnerService ownerService, VetServices vetServices, PetTypeService petTypeService, SpecialtyServices specialtyServices) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
         this.ownerService = ownerService;
-        this.vetServices = vetServices;
+        this.vetService = vetService;
         this.petTypeService = petTypeService;
-        this.specialtyServices = specialtyServices;
+        this.specialtyService = specialtyService;
     }
 
     @Override
@@ -109,9 +109,9 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("Created Specialties");
 
         //Saving Specialties
-        Specialty savedRadiology = specialtyServices.save(radiology);
-        Specialty savedSurgery = specialtyServices.save(surgery);
-        Specialty savedDentistry = specialtyServices.save(dentistry);
+        Specialty savedRadiology = specialtyService.save(radiology);
+        Specialty savedSurgery = specialtyService.save(surgery);
+        Specialty savedDentistry = specialtyService.save(dentistry);
 
         System.out.println("Saved Specialties");
 
@@ -128,7 +128,7 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("Gave Vet 1 Specialties");
 
         //Saving Vet 1
-        vetServices.save(vet1);
+        vetService.save(vet1);
 
         System.out.println("Vet 1 Saved");
 
@@ -143,7 +143,7 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("Gave Vet 2 Specialties");
 
         //Saving Vet 2
-        vetServices.save(vet2);
+        vetService.save(vet2);
 
         System.out.println("Vet 2 Saved");
     }
