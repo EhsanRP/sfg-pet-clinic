@@ -1,10 +1,7 @@
 package guru.springframework.sfgpetclinic.bootstrap;
 
 import guru.springframework.sfgpetclinic.model.*;
-import guru.springframework.sfgpetclinic.services.OwnerService;
-import guru.springframework.sfgpetclinic.services.PetTypeService;
-import guru.springframework.sfgpetclinic.services.SpecialtyService;
-import guru.springframework.sfgpetclinic.services.VetService;
+import guru.springframework.sfgpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -16,12 +13,14 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -88,13 +87,25 @@ public class DataLoader implements CommandLineRunner {
         fionasPet.setOwner(owner2);
         fionasPet.setBirthDate(LocalDate.now());
         fionasPet.setName("Chessie");
-        owner2.getPets().add(mikesPet);
+        owner2.getPets().add(fionasPet);
 
         System.out.println("Gave Owner 2 a Pet");
 
         //Saving Owner 2
         ownerService.save(owner2);
         System.out.println("Owner 2 Saved");
+
+        //Visiting Owner 2 Pet
+        Visit chessieVisit = new Visit();
+        chessieVisit.setPet(fionasPet);
+        chessieVisit.setDate(LocalDate.now());
+        chessieVisit.setDescription("He is All Fine");
+
+        System.out.println("Visit for Owner 2 Pet Created");
+
+        //Saving Owner 2 Pet Visit
+        visitService.save(chessieVisit);
+        System.out.println("Saved Owner 2 Pet Visit");
 
         //Creating Specialties
         Specialty radiology = new Specialty();
