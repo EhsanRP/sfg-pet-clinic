@@ -21,6 +21,8 @@
 
     </properties>
 
+    <!--General Dependencies-->
+
     <dependencies>
         <dependency>
             <artifactId>pet-clinic-data</artifactId>
@@ -45,23 +47,14 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <!--End of General Dependencies-->
 
         <!-- webjars -->
         <dependency>
@@ -83,9 +76,14 @@
             <artifactId>bootstrap</artifactId>
             <version>${webjars-bootstrap.version}</version>
         </dependency>
+
+        <!-- end of webjars -->
+
+        <!-- Spring Framework Tests-->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
             <exclusions>
                 <exclusion>
                     <groupId>junit</groupId>
@@ -104,13 +102,17 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>2.22.0</version>
             <scope>test</scope>
         </dependency>
-        <!-- end of webjars -->
+
+        <!--end of Spring Framework Tests-->
 
     </dependencies>
+
+
 
     <build>
         <plugins>
