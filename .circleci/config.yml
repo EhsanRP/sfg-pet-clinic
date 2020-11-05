@@ -9,5 +9,9 @@ workflows:
   <<<<<<< circleci-project-setup
   - maven/test # checkout, build, test, and upload test results
   =======
-  - maven/test # checkout, build, test, and upload test results
+  <<<<<<< circleci-project-setup
+- maven/test # checkout, build, test, and upload test results
+  =======
+- maven/test # checkout, build, test, and upload test results
+  >>>>>>> master
   >>>>>>> master
