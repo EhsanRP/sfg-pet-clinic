@@ -24,7 +24,7 @@ public class OwnerController {
     }
 
     @InitBinder
-    public void setAllowedFields(WebDataBinder webDataBinder){
+    public void setAllowedFields(WebDataBinder webDataBinder) {
         webDataBinder.setDisallowedFields("id");
     }
 
@@ -46,30 +46,28 @@ public class OwnerController {
     }
 
     @GetMapping("/find")
-    public ModelAndView findOwners(){
+    public ModelAndView findOwners() {
         ModelAndView modelAndView = new ModelAndView("owners/findOwners");
         modelAndView.addObject(Owner.builder().build());
         return modelAndView;
     }
 
     @GetMapping
-    public String processFindForm(Owner owner, BindingResult result, Model model){
-        if (owner.getLastName() == null){
+    public String processFindForm(Owner owner, BindingResult result, Model model) {
+        if (owner.getLastName() == null) {
             owner.setLastName("");
         }
 
-        List<Owner> ownerList = ownerService.findAllByLastNameLike(owner.getLastName());
+        List<Owner> ownerList = ownerService.findAllByLastNameLike("%" + owner.getLastName() + "%");
 
         if (ownerList.isEmpty()) {
             result.rejectValue("lastName", "not found", "not found");
             return "owners/findOwners";
-        }
-        else if (ownerList.size() == 1){
+        } else if (ownerList.size() == 1) {
             owner = ownerList.get(0);
             return "redirect:/owners/" + owner.getId();
-        }
-        else {
-            model.addAttribute("selections" , ownerList);
+        } else {
+            model.addAttribute("selections", ownerList);
             return "owners/ownersList";
         }
 
