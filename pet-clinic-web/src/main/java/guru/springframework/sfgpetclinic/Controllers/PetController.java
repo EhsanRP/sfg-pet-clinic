@@ -53,6 +53,7 @@ public class PetController {
     public ModelAndView initCreationForm(Owner owner){
         Pet pet = new Pet();
         owner.getPets().add(pet);
+        pet.setOwner(owner);
         return new ModelAndView(VIEWS_CREATE_OR_UPDATE).addObject(pet);
     }
 
@@ -67,7 +68,6 @@ public class PetController {
             return VIEWS_CREATE_OR_UPDATE;
         } else {
             petService.save(pet);
-
             return VIEWS_REDIRECT_TO_OWNER + owner.getId();
         }
     }
