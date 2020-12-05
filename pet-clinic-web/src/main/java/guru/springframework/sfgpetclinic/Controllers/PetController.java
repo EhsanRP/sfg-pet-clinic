@@ -85,7 +85,7 @@ public class PetController {
         } else {
             owner.getPets().add(pet);
             petService.save(pet);
-            return new ModelAndView(VIEWS_CREATE_OR_UPDATE + owner.getId());
+            return new ModelAndView(VIEWS_REDIRECT_TO_OWNER + owner.getId());
         }
     }
 }
