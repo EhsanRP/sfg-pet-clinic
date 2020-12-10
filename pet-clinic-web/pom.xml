@@ -11,16 +11,6 @@
 
     <artifactId>pet-clinic-web</artifactId>
 
-    <properties>
-
-        <!-- Web dependencies -->
-        <webjars-bootstrap.version>3.3.6</webjars-bootstrap.version>
-        <webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
-        <webjars-jquery.version>2.2.4</webjars-jquery.version>
-        <wro4j.version>1.8.0</wro4j.version>
-
-    </properties>
-
     <!--General Dependencies-->
 
     <dependencies>
@@ -61,20 +51,30 @@
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator-core</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
-            <version>${webjars-jquery.version}</version>
+            <version>3.5.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars/jquery-ui -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery-ui</artifactId>
-            <version>${webjars-jquery-ui.version}</version>
+            <version>1.12.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
-            <version>${webjars-bootstrap.version}</version>
+            <version>4.5.3</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.webjars.bower/bootstrap-less-only -->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>bootstrap-less-only</artifactId>
+            <version>3.3.6</version>
         </dependency>
 
         <!-- end of webjars -->
@@ -124,7 +124,7 @@
             <plugin>
                 <groupId>ro.isdc.wro4j</groupId>
                 <artifactId>wro4j-maven-plugin</artifactId>
-                <version>${wro4j.version}</version>
+                <version>1.8.0</version>
                 <executions>
                     <execution>
                         <phase>generate-resources</phase>
@@ -144,13 +144,13 @@
                 <dependencies>
                     <dependency>
                         <groupId>org.webjars</groupId>
-                        <artifactId>bootstrap</artifactId>
-                        <version>${webjars-bootstrap.version}</version>
+                        <artifactId>jquery-ui</artifactId>
+                        <version>1.12.1</version>
                     </dependency>
                     <dependency>
                         <groupId>org.mockito</groupId>
                         <artifactId>mockito-core</artifactId>
-                        <version>${mockito.version}</version>
+                        <version>3.6.28</version>
                     </dependency>
                 </dependencies>
             </plugin>

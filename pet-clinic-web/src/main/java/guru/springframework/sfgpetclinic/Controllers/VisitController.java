@@ -17,11 +17,10 @@ import java.time.LocalDate;
 @Controller
 public class VisitController {
 
-    private final VisitService visitService;
-    private final PetService petService;
-
     private final static String VIEWS_CREATE_OR_UPDATE_VISIT = "pets/createOrUpdateVisitForm";
     private final static String VIEWS_REDIRECT_TO_OWNER = "redirect:/owners/{ownerId}";
+    private final VisitService visitService;
+    private final PetService petService;
 
     public VisitController(VisitService visitService, PetService petService) {
         this.visitService = visitService;
@@ -56,11 +55,15 @@ public class VisitController {
     }
 
     @PostMapping("/owners/{ownerId}/pets/{petId}/visits/new")
-    public String processNewVisitForm(@Validated Visit visit, BindingResult bindingResult){
+    public String processNewVisitForm(@Validated Visit visit, BindingResult bindingResult , @PathVariable Long petId){
         if (bindingResult.hasErrors())
             return VIEWS_CREATE_OR_UPDATE_VISIT;
         else {
+            Pet visited = petService.findById(petId);
+            visit.setPet(visited);
             visitService.save(visit);
+            visited.getVisits().add(visit);
+            petService.save(visited);
             return VIEWS_REDIRECT_TO_OWNER;
         }
     }

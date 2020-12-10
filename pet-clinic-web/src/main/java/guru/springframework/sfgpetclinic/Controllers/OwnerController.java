@@ -19,7 +19,7 @@ public class OwnerController {
 
 
     //VIEWS
-    private static final String VIEWS_CREATE_OR_UPDATE = "owners/createOrUpdateOwnerForm";
+    private static final String  VIEWS_CREATE_OR_UPDATE = "owners/createOrUpdateOwnerForm";
     private static final String VIEWS_FIND_OWNER = "owners/findOwners";
     private static final String VIEWS_OWNERS_DETAILS = "owners/ownerDetails";
     private static final String VIEWS_OWNERS_LIST = "owners/ownersList";
